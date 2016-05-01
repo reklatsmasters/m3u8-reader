@@ -20,17 +20,17 @@ http://1.example.com/index.m3u8
 #### output
 ```json
 [
-  { MEDIA: { 
-      TYPE: 'VIDEO',
-      'GROUP-ID': 'chunked',
-      NAME: 'Source',
-      AUTOSELECT: 'YES',
-      DEFAULT: 'YES' 
+  { "MEDIA": { 
+      "TYPE": "VIDEO",
+      "GROUP-ID": "chunked",
+      "NAME": "Source",
+      "AUTOSELECT": "YES",
+      "DEFAULT": "YES" 
     }
   },
-  'http://1.example.com/index.m3u8',
-  { 'PLAYLIST-TYPE': 'VOD' },
-  { 'EXTINF': '10' }
+  "http://1.example.com/index.m3u8",
+  { "PLAYLIST-TYPE": "VOD" },
+  { "EXTINF": "10" }
 ]
 ```
 
