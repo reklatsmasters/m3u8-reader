@@ -1,7 +1,7 @@
 {
   "name": "m3u8-reader",
   "version": "0.0.0",
-  "description": "",
+  "description": "Read and parse m3u8 playlist into array",
   "main": "index.js",
   "scripts": {
     "test": "tape test.js"
