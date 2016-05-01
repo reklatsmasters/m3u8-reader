@@ -6,6 +6,8 @@ const playlist = fs.readFileSync('test.m3u8', 'utf8')
 const test = require('tape')
 
 const template = [
+  {STATUS: void 0},
+  {'ID3-EQUIV-TDTG': '2015-01-01T01:21:00'},
   { MEDIA: { 
       TYPE: 'VIDEO',
       'GROUP-ID': 'chunked',

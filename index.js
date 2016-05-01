@@ -17,7 +17,7 @@ function m3u(playlist) {
 }
 
 function transform(line) {
-  const splitted = line.split(':', 2)
+  const splitted = split(line)
 
   return {[normal_key(splitted[0])]: (splitted.length == 1) ? void 0 : parse_params(splitted[1])}
 }
@@ -41,4 +41,9 @@ function parse_params(line) {
 
 function normal_key(key) {
   return key.startsWith(KEY_PREFIX) ? key.slice(KEY_PREFIX.length) : key.startsWith('#') ? key.slice(1) : key
+}
+
+function split(line) {
+  const pos = line.indexOf(':')  
+  return pos > 0 ? [ line.slice(0, pos), line.slice(pos+1) ] : [line]
 }
