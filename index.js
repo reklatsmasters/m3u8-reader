@@ -76,7 +76,7 @@ function normalize (key) {
 }
 
 function split (line) {
-  const pos = line.indexOf(':')
+  var pos = line.indexOf(':')
   return pos > 0 ? [ line.slice(0, pos), line.slice(pos + 1) ] : [line]
 }
 
