@@ -1,49 +1,115 @@
 'use strict'
 
-const NON_QUOTED_COMMA = /,(?=(?:[^"]|"[^"]*")*$)/
-const KV_SPLITTER = /="?([^"]*)/
-const KEY_PREFIX = '#EXT-X-'
+var NON_QUOTED_COMMA = /,(?=(?:[^"]|"[^"]*")*$)/
+var KV_SPLITTER = /="?([^"]*)/
+var KEY_PREFIX = '#EXT-X-'
 
 module.exports = m3u
 
 function m3u (playlist) {
-  const lines = playlist.toString().split('\n')
+  var lines = playlist.toString().split('\n')
 
-  if (!lines.length || !lines[0].startsWith('#EXTM3U')) {
+  if (!lines.length || !startsWith(lines[0], '#EXTM3U')) {
     throw new Error('Invalid m3u playlist')
   }
 
-  return lines.slice(1).map(line => line.startsWith('#') ? transform(line.trim()) : line.trim()).filter(Boolean)
+  lines = lines.slice(1)
+
+  var line
+  var i
+  var length = 0
+
+  for (i = 0; i < lines.length; ++i) {
+    line = trim(lines[i])
+
+    lines[length] = startsWith(line, '#') ? transform(line) : line
+
+    if (lines[length]) {
+      ++length
+    }
+  }
+
+  lines.length = length
+
+  return lines
 }
 
 function transform (line) {
-  const splitted = split(line)
+  var splitted = split(line)
+  var obj = {}
 
-  return {[normalKey(splitted[0])]: (splitted.length === 1) ? void 0 : parseParams(splitted[1])}
+  obj[normalize(splitted[0])] = splitted.length > 1
+    ? parseParams(splitted[1])
+    : void 0
+
+  return obj
 }
 
 function parseParams (line) {
-  const pairs = line.split(NON_QUOTED_COMMA).map(e => e.trim()).filter(Boolean)
-  const attrs = {}
+  var pairs = filter(line.split(NON_QUOTED_COMMA))
+  var attrs = {}
 
-  for (const kv of pairs) {
-    const kvList = kv.split(KV_SPLITTER)
+  var i
+  var kvList
+
+  for (i = 0; i < pairs.length; ++i) {
+    kvList = pairs[i].split(KV_SPLITTER)
 
     if (pairs.length === 1 && kvList.length === 1) {
       return kvList[0]
     }
 
-    attrs[ kvList[0].trim() ] = kvList.length > 1 ? kvList[1].trim() : void 0
+    attrs[ trim(kvList[0]) ] = kvList.length > 1
+      ? trim(kvList[1])
+      : void 0
   }
 
   return attrs
 }
 
-function normalKey (key) {
-  return key.startsWith(KEY_PREFIX) ? key.slice(KEY_PREFIX.length) : key.startsWith('#') ? key.slice(1) : key
+function normalize (key) {
+  return startsWith(key, KEY_PREFIX)
+    ? key.slice(KEY_PREFIX.length)
+    : startsWith(key, '#')
+      ? key.slice(1)
+      : key
 }
 
 function split (line) {
   const pos = line.indexOf(':')
   return pos > 0 ? [ line.slice(0, pos), line.slice(pos + 1) ] : [line]
+}
+
+function startsWith (s, prefix) {
+  if (typeof s !== 'string') {
+    return false
+  }
+
+  if (typeof s.startsWith === 'function') {
+    return s.startsWith(prefix)
+  }
+
+  return s.indexOf(prefix) === 0
+}
+
+function trim (str) {
+  return (typeof str.trim === 'function')
+    ? str.trim()
+    : str.replace(/^\s*|\s*$/g, '')
+}
+
+function filter (arr) {
+  var length = 0
+
+  for (var i = 0; i < arr.length; ++i) {
+    arr[length] = trim(arr[i])
+
+    if (arr[length]) {
+      length += 1
+    }
+  }
+
+  arr.length = length
+
+  return arr
 }
