@@ -4,7 +4,7 @@
   "description": "Read and parse m3u8 playlist into array",
   "main": "index.js",
   "scripts": {
-    "test": "ava test.js"
+    "test": "standard && ava test.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/reklatsmasters/m3u8-reader#readme",
   "devDependencies": {
-    "ava": "^0.17.0"
+    "ava": "^0.17.0",
+    "standard": "*"
   }
 }
