@@ -43,5 +43,9 @@ const fs = require('fs')
 console.log(m3u(fs.readFileSync('test.m3u8', 'utf8')))
 ````
 
+## Related
+* [m3u8-write](https://github.com/ReklatsMasters/m3u8-write) - create .m3u8 playlist from an array of objects
+* [m3u8-stream-list](https://github.com/ReklatsMasters/m3u8-stream-list) - read list of streams from .m3u8 playlist
+
 ## License
 MIT, 2016 (c) Dmitry Tsvettsikh
