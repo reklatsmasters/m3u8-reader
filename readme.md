@@ -1,5 +1,5 @@
 # m3u8-reader
-[![travis](https://travis-ci.org/ReklatsMasters/m3u8-reader.svg)](https://travis-ci.org/ReklatsMasters/m3u8-reader)
+[![travis](https://travis-ci.org/reklatsmasters/m3u8-reader.svg)](https://travis-ci.org/reklatsmasters/m3u8-reader)
 [![npm](https://img.shields.io/npm/v/m3u8-reader.svg)](https://npmjs.org/package/m3u8-reader)
 [![license](https://img.shields.io/npm/l/m3u8-reader.svg)](https://npmjs.org/package/m3u8-reader)
 [![downloads](https://img.shields.io/npm/dm/m3u8-reader.svg)](https://npmjs.org/package/m3u8-reader)
