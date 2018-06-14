@@ -37,15 +37,20 @@ function m3u (playlist) {
 function transform (line) {
   var splitted = split(line)
   var obj = {}
+  var directive = normalize(splitted[0])
 
-  obj[normalize(splitted[0])] = splitted.length > 1
-    ? parseParams(splitted[1])
+  obj[directive] = splitted.length > 1
+    ? parseParams(directive, splitted[1])
     : void 0
 
   return obj
 }
 
-function parseParams (line) {
+function parseParams (directive, line) {
+  if (directive === 'EXTINF') {
+    return line
+  }
+
   var pairs = filter(line.split(NON_QUOTED_COMMA))
   var attrs = {}
 
