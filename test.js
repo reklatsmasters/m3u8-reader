@@ -43,7 +43,8 @@ const template = [
   },
   'http://2.example.com/index.m3u8',
   { 'PLAYLIST-TYPE': 'VOD' },
-  { 'EXTINF': '10' }
+  { 'EXTINF': '10' },
+  { 'EXTINF': '10,' }
 ]
 
 test('m3u8', t => {
