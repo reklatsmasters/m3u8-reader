@@ -59,7 +59,7 @@ function parseParams (line) {
       return kvList[0]
     }
 
-    attrs[ trim(kvList[0]) ] = kvList.length > 1
+    attrs[trim(kvList[0])] = kvList.length > 1
       ? trim(kvList[1])
       : void 0
   }
@@ -77,7 +77,7 @@ function normalize (key) {
 
 function split (line) {
   var pos = line.indexOf(':')
-  return pos > 0 ? [ line.slice(0, pos), line.slice(pos + 1) ] : [line]
+  return pos > 0 ? [line.slice(0, pos), line.slice(pos + 1)] : [line]
 }
 
 function startsWith (s, prefix) {
