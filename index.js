@@ -9,7 +9,7 @@ module.exports = m3u
 function m3u (playlist) {
   var lines = playlist.toString().split('\n')
 
-  if (!lines.length || !startsWith(lines[0], '#EXTM3U')) {
+  if (!lines.length || !startsWith(lines[0].trim(), '#EXTM3U')) {
     throw new Error('Invalid m3u playlist')
   }
 
