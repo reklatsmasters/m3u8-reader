@@ -7,8 +7,8 @@ import test from 'ava'
 const playlist = fs.readFileSync('test.m3u8', 'utf8')
 
 const template = [
-  {STATUS: void 0},
-  {'ID3-EQUIV-TDTG': '2015-01-01T01:21:00'},
+  { STATUS: void 0 },
+  { 'ID3-EQUIV-TDTG': '2015-01-01T01:21:00' },
   { MEDIA: {
     TYPE: 'VIDEO',
     'GROUP-ID': 'chunked',
@@ -43,7 +43,7 @@ const template = [
   },
   'http://2.example.com/index.m3u8',
   { 'PLAYLIST-TYPE': 'VOD' },
-  { 'EXTINF': '10' }
+  { EXTINF: '10' }
 ]
 
 test('m3u8', t => {
